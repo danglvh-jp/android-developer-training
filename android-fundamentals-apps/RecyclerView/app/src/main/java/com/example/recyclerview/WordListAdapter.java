@@ -32,7 +32,9 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
     @Override
     public void onBindViewHolder(@NonNull WordViewHolder holder, int position) {
+        // Retrieve the data for that position.
         String mCurrent = mWordList.get(position);
+        // Add the data to the view holder.
         holder.wordItemView.setText(mCurrent);
     }
 
@@ -41,7 +43,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         return mWordList.size();
     }
 
-    public class WordViewHolder extends RecyclerView.ViewHolder{
+    public class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public final TextView wordItemView;
         final WordListAdapter mAdapter;
@@ -50,6 +52,23 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
             super(itemView);
             this.wordItemView = itemView.findViewById(R.id.word);
             this.mAdapter = mAdapter;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            // Get the position of the item that was clicked.
+            int mPosition = getLayoutPosition();
+
+            // Use that to access the affected item in mWordList.
+            String element = mWordList.get(mPosition);
+
+            // Change the word in the mWordList.
+            mWordList.set(mPosition, "Clicked! " + element);
+
+            // Notify the adapter, that the data has changed so it can
+            // update the RecyclerView to display the data.
+            mAdapter.notifyDataSetChanged();
         }
     }
 }
