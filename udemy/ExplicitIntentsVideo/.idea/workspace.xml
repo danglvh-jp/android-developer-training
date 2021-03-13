@@ -25,18 +25,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fa02252-1e3a-4a05-ab55-b62284cf797b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/explicitintentsvideo/Activity2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/explicitintentsvideo/Activity3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../android-fundamentals-apps/AppWithSettings/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../android-fundamentals-apps/AppWithSettings/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../android-fundamentals-apps/ImplicitIntentsReceiver/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../android-fundamentals-apps/ImplicitIntentsReceiver/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../android-fundamentals-apps/MaterialMe/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../android-fundamentals-apps/MaterialMe/.idea/gradle.xml" afterDir="false" />
@@ -47,13 +35,18 @@
       <change beforePath="$PROJECT_DIR$/../../android-fundamentals-apps/MaterialMe/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../android-fundamentals-apps/MaterialMe/app/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../android-fundamentals-apps/RecyclerView/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../android-fundamentals-apps/RecyclerView/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../android-fundamentals-apps/TwoActivities/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../android-fundamentals-apps/TwoActivities/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/explicitintentsvideo/Activity2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/explicitintentsvideo/Activity2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/explicitintentsvideo/Activity3.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/explicitintentsvideo/Activity3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/explicitintentsvideo/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/explicitintentsvideo/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_3.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_3a_API_30_x86]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -93,7 +86,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="Explicit_Intents_Video.app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -177,9 +170,21 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1223" y="246" key="#com.intellij.ide.util.MemberChooser" timestamp="1615644434678">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="1223" y="246" key="#com.intellij.ide.util.MemberChooser/0.0.1858.1080@0.0.1858.1080" timestamp="1615644434678" />
+    <state x="1071" y="100" width="694" height="880" key="AVDManager" timestamp="1615643164960">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="1071" y="100" width="694" height="880" key="AVDManager/0.0.1858.1080@0.0.1858.1080" timestamp="1615643164960" />
     <state x="1268" y="329" key="AndroidCreateXmlResourceDialog" timestamp="1615625209265">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="1268" y="329" key="AndroidCreateXmlResourceDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1615625209265" />
+    <state x="1198" y="294" key="FileChooserDialogImpl" timestamp="1615643393187">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="1198" y="294" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1615643393187" />
   </component>
 </project>
