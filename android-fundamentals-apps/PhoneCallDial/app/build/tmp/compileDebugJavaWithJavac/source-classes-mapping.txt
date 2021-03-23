@@ -1,4 +1,0 @@
-com/example/phonecalldial/MainActivity.java
- com.example.phonecalldial.MainActivity
-com/example/phonecalldial/BuildConfig.java
- com.example.phonecalldial.BuildConfig
