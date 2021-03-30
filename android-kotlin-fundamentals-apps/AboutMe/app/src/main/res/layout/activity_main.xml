@@ -8,11 +8,10 @@
     tools:context=".MainActivity">
 
     <TextView
+        style="@style/NameStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/name"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size" />
+        android:textAlignment="center" />
 
 </LinearLayout>
