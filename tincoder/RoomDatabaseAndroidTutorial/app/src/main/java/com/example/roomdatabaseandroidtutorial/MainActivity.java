@@ -1,10 +1,12 @@
 package com.example.roomdatabaseandroidtutorial;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int MY_REQUEST_CODE = 10;
 
     private EditText edtUserName;
     private EditText edtAddress;
@@ -35,7 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
         initUI();
 
-        userAdapter = new UserAdapter();
+        userAdapter = new UserAdapter(new UserAdapter.IClickItemUser() {
+            @Override
+            public void updateUser(User user) {
+                clickUpdateUser(user);
+            }
+        });
         mListUser = new ArrayList<>();
         userAdapter.setData(mListUser);
 
@@ -50,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 addUser();
             }
         });
+
+        loadData();
     }
 
     public void initUI() {
@@ -67,16 +78,21 @@ public class MainActivity extends AppCompatActivity {
             return;
         } else {
             User user = new User(strUsername, strAddress);
-            UserDatabase.getInstance(this).userDAO().insertUser(user);
-            displayToast("Add user successfully");
 
-            edtUserName.setText("");
-            edtAddress.setText("");
+            if (isUserExist(user)) {
+                displayToast("User exist");
+                return;
+            } else {
+                UserDatabase.getInstance(this).userDAO().insertUser(user);
+                displayToast("Add user successfully");
 
-            hideSoftKeyBoard();
+                edtUserName.setText("");
+                edtAddress.setText("");
 
-            mListUser = UserDatabase.getInstance(this).userDAO().getListUser();
-            userAdapter.setData(mListUser);
+                hideSoftKeyBoard();
+
+                loadData();
+            }
         }
     }
 
@@ -90,6 +106,35 @@ public class MainActivity extends AppCompatActivity {
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         } catch (NullPointerException exception) {
             exception.printStackTrace();
+        }
+    }
+
+    private void loadData() {
+        mListUser = UserDatabase.getInstance(this).userDAO().getListUser();
+        userAdapter.setData(mListUser);
+    }
+
+    public boolean isUserExist(User user) {
+        List<User> list = UserDatabase.getInstance(this).userDAO().checkUser(user.getUsername());
+        return list != null && !list.isEmpty();
+    }
+
+    private void clickUpdateUser(User user) {
+        Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_user", user);
+        intent.putExtras(bundle);
+        startActivityForResult(intent, MY_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == MY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                loadData();
+            }
         }
     }
 }
