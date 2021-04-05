@@ -18,6 +18,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     public interface IClickItemUser {
         void updateUser(User user);
+
+        void deleteUser(User user);
     }
 
     public UserAdapter(IClickItemUser iClickItemUser) {
@@ -51,6 +53,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                     iClickItemUser.updateUser(user);
                 }
             });
+
+            holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    iClickItemUser.deleteUser(user);
+                }
+            });
         }
     }
 
@@ -68,6 +77,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         private TextView tvUserName;
         private TextView tvAddress;
         private Button btnUpdate;
+        private Button btnDelete;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +85,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             tvUserName = itemView.findViewById(R.id.tv_username);
             tvAddress = itemView.findViewById(R.id.tv_address);
             btnUpdate = itemView.findViewById(R.id.btn_update);
+            btnDelete = itemView.findViewById(R.id.btn_delete);
         }
     }
 }
