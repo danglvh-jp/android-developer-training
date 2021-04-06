@@ -60,6 +60,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                     iClickItemUser.deleteUser(user);
                 }
             });
+
+            holder.tvYear.setText(user.getYear());
         }
     }
 
@@ -76,6 +78,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
         private TextView tvUserName;
         private TextView tvAddress;
+        private TextView tvYear;
         private Button btnUpdate;
         private Button btnDelete;
 
@@ -86,6 +89,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             tvAddress = itemView.findViewById(R.id.tv_address);
             btnUpdate = itemView.findViewById(R.id.btn_update);
             btnDelete = itemView.findViewById(R.id.btn_delete);
+            tvYear = itemView.findViewById(R.id.tv_year);
         }
     }
 }

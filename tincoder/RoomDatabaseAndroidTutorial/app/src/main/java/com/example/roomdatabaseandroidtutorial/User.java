@@ -12,10 +12,12 @@ public class User implements Serializable {
     private int id;
     private String username;
     private String address;
+    private String year;
 
-    public User(String username, String address) {
+    public User(String username, String address, String year) {
         this.username = username;
         this.address = address;
+        this.year = year;
     }
 
     public String getUsername() {
@@ -40,5 +42,13 @@ public class User implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 }

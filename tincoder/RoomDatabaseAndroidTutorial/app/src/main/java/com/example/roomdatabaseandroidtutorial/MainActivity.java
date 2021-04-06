@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvDeleteAll;
     private EditText edtSearch;
 
+    private EditText edtYear;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,16 +103,18 @@ public class MainActivity extends AppCompatActivity {
         rcvUser = findViewById(R.id.rcv_user);
         tvDeleteAll = findViewById(R.id.tv_delete_all);
         edtSearch = findViewById(R.id.edt_search);
+        edtYear = findViewById(R.id.edt_year);
     }
 
     private void addUser() {
         String strUsername = edtUserName.getText().toString().trim();
         String strAddress = edtAddress.getText().toString().trim();
+        String strYear = edtYear.getText().toString().trim();
 
         if (TextUtils.isEmpty(strUsername) || TextUtils.isEmpty(strAddress)) {
             return;
         } else {
-            User user = new User(strUsername, strAddress);
+            User user = new User(strUsername, strAddress, strYear);
 
             if (isUserExist(user)) {
                 displayToast("User exist");
@@ -121,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
                 edtUserName.setText("");
                 edtAddress.setText("");
+                edtYear.setText("");
 
                 hideSoftKeyBoard();
 

@@ -25,6 +25,15 @@
         android:textColor="@color/black"
         android:textSize="16sp" />
 
+    <EditText
+        android:id="@+id/edt_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:hint="Year"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
     <Button
         android:id="@+id/btn_add_user"
         android:layout_width="match_parent"
