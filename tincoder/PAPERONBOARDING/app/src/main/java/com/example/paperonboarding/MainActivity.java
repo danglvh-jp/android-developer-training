@@ -1,12 +1,14 @@
 package com.example.paperonboarding;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.ramotion.paperonboarding.PaperOnboardingEngine;
+import com.ramotion.paperonboarding.PaperOnboardingFragment;
 import com.ramotion.paperonboarding.PaperOnboardingPage;
 import com.ramotion.paperonboarding.listeners.PaperOnboardingOnChangeListener;
 import com.ramotion.paperonboarding.listeners.PaperOnboardingOnLeftOutListener;
@@ -19,32 +21,38 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.onboarding_main_layout);
+        setContentView(R.layout.activity_main);
 
-        PaperOnboardingEngine engine = new PaperOnboardingEngine(findViewById(R.id.onboardingRootView),
-                getPaperOnboardingPageData(),
-                this);
+        PaperOnboardingFragment paperOnboardingFragment = PaperOnboardingFragment.newInstance(getPaperOnboardingPageData());
 
-        engine.setOnChangeListener(new PaperOnboardingOnChangeListener() {
-            @Override
-            public void onPageChanged(int i, int i1) {
-                displayToast("Swiped from " + i + " to " + i1);
-            }
-        });
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.content_frame, paperOnboardingFragment);
+        fragmentTransaction.commit();
 
-        engine.setOnRightOutListener(new PaperOnboardingOnRightOutListener() {
-            @Override
-            public void onRightOut() {
-                displayToast("Swiped out right");
-            }
-        });
-
-        engine.setOnLeftOutListener(new PaperOnboardingOnLeftOutListener() {
-            @Override
-            public void onLeftOut() {
-                displayToast("Swiped out left");
-            }
-        });
+//        PaperOnboardingEngine engine = new PaperOnboardingEngine(findViewById(R.id.onboardingRootView),
+//                getPaperOnboardingPageData(),
+//                this);
+//
+//        engine.setOnChangeListener(new PaperOnboardingOnChangeListener() {
+//            @Override
+//            public void onPageChanged(int i, int i1) {
+//                displayToast("Swiped from " + i + " to " + i1);
+//            }
+//        });
+//
+//        engine.setOnRightOutListener(new PaperOnboardingOnRightOutListener() {
+//            @Override
+//            public void onRightOut() {
+//                displayToast("Swiped out right");
+//            }
+//        });
+//
+//        engine.setOnLeftOutListener(new PaperOnboardingOnLeftOutListener() {
+//            @Override
+//            public void onLeftOut() {
+//                displayToast("Swiped out left");
+//            }
+//        });
     }
 
     private ArrayList<PaperOnboardingPage> getPaperOnboardingPageData() {
