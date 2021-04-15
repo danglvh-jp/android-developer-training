@@ -3,4 +3,5 @@
     <string name="unknown_action">unknown intent action</string>
     <string name="power_connected">Power connected!</string>
     <string name="power_disconnected">Power disconnected!</string>
+    <string name="send_custom_broadcast">Send Custom Broadcast</string>
 </resources>
