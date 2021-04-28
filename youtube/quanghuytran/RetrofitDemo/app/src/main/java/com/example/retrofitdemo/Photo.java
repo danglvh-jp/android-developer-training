@@ -1,5 +1,7 @@
 package com.example.retrofitdemo;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Photo {
@@ -19,5 +21,11 @@ public class Photo {
 
     public String getUrl() {
         return url;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return title;
     }
 }
