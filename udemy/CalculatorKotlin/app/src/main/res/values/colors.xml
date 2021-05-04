@@ -10,4 +10,7 @@
 
     <color name="colorText">#000000</color>
     <color name="colorTextLight">#A0A0A0</color>
+    <color name="colorTitleBackground">#D3D3D3</color>
+    <color name="colorCalculatorBackground">#FFFFFF</color>
+    <color name="colorImage">#e08e3a</color>
 </resources>
