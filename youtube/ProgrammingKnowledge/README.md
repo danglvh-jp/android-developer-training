@@ -1,2 +1,0 @@
-# ProgrammingKnowledge
-Youtube Channel: ProgrammingKnowledge
