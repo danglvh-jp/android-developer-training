@@ -1,0 +1,2 @@
+rootProject.name = "Circular Determinate ProgressBar Kotlin"
+include ':app'
