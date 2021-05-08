@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -110,12 +111,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
-    private void player2Wins() {
+    private void player1Wins() {
+        player1Points++;
+        displayToast("Player 1 wins!");
+        updatePointsText();
+        resetBoard();
     }
 
-    private void player1Wins() {
+    private void player2Wins() {
+        player2Points++;
+        displayToast("Player 2 wins!");
+        updatePointsText();
+        resetBoard();
     }
 
     private void draw() {
+        displayToast("Draw!");
+    }
+
+    private void updatePointsText() {
+        textViewPlayer1.setText("Player 1: " + player1Points);
+        textViewPlayer2.setText("Player 2: " + player2Points);
+    }
+
+    private void resetBoard() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                buttons[i][j].setText("");
+            }
+        }
+
+        roundCount = 0;
+        player1Turn = true;
+    }
+
+    private void displayToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 }
