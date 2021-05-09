@@ -47,7 +47,11 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
         holder.mTextViewCreator.setText(creatorName);
         holder.mTextViewLikes.setText("Likes: " + likeCount);
-        Picasso.get().load(imageUrl).fit().centerInside().into(holder.mImageView);
+        if (imageUrl.isEmpty()) {
+            holder.mImageView.setImageResource(R.mipmap.ic_launcher);
+        } else {
+            Picasso.get().load(imageUrl).fit().centerInside().into(holder.mImageView);
+        }
     }
 
     @Override
