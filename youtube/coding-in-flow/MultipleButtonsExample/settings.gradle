@@ -1,0 +1,2 @@
+rootProject.name = "Multiple Buttons Example"
+include ':app'
