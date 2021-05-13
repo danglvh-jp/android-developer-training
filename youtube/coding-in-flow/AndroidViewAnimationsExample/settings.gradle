@@ -1,0 +1,2 @@
+rootProject.name = "AndroidViewAnimations Example"
+include ':app'
