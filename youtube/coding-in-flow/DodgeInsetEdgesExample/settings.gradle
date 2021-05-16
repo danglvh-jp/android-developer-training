@@ -1,0 +1,2 @@
+rootProject.name = "DodgeInsetEdges Example"
+include ':app'
