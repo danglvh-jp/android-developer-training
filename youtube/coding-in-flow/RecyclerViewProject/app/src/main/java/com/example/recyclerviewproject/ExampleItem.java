@@ -12,7 +12,7 @@ public class ExampleItem {
         this.mText2 = mText2;
     }
 
-    public int getmImageResource() {
+    public int getImageResource() {
         return mImageResource;
     }
 
@@ -20,7 +20,7 @@ public class ExampleItem {
         this.mImageResource = mImageResource;
     }
 
-    public String getmText1() {
+    public String getText1() {
         return mText1;
     }
 
@@ -28,7 +28,7 @@ public class ExampleItem {
         this.mText1 = mText1;
     }
 
-    public String getmText2() {
+    public String getText2() {
         return mText2;
     }
 
