@@ -1,2 +1,0 @@
-# slidenerd
-Youtube Channel: slidenerd
