@@ -1,0 +1,2 @@
+rootProject.name = "Picassor Example"
+include ':app'
