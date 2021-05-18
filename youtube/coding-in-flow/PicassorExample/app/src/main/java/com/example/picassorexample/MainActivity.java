@@ -22,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
 
         Picasso.get()
                 .load(url)
+                //.resize(0, 500)
+                //.resizeDimen(R.dimen.image_size, R.dimen.image_size)
+                //.onlyScaleDown()
+                .fit()
+                .centerCrop()
                 .into(imageView);
     }
 }
