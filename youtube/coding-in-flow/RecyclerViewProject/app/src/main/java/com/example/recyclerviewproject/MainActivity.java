@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private ExampleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<ExampleItem> mExampleList;
     private Button buttonInsert;
@@ -67,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new ExampleAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                changeItem(position, "Clicked");
+            }
+        });
     }
 
     public void insertItem(int position) {
@@ -77,5 +84,10 @@ public class MainActivity extends AppCompatActivity {
     public void removeItem(int position) {
         mExampleList.remove(position);
         mAdapter.notifyItemRemoved(position);
+    }
+
+    public void changeItem(int position, String text) {
+        mExampleList.get(position).changeText1(text);
+        mAdapter.notifyItemChanged(position);
     }
 }
