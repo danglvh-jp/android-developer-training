@@ -1,0 +1,2 @@
+rootProject.name = "Custom Toast Toasty"
+include ':app'
