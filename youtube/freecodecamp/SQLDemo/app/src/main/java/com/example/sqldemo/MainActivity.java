@@ -34,13 +34,22 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                CustomerModel customerModel;
+
                 try {
-                    CustomerModel customerModel = new CustomerModel(-1, edtName.getText().toString(), Integer.parseInt(edtAge.getText().toString()), swActiveCustomer.isChecked());
+                    customerModel = new CustomerModel(-1, edtName.getText().toString(), Integer.parseInt(edtAge.getText().toString()), swActiveCustomer.isChecked());
                     displayToast(customerModel.toString());
                 } catch (Exception e) {
                     displayToast("Error creating customer");
+                    customerModel = new CustomerModel(-1, "error", 0, false);
                 }
-                displayToast("Add button");
+
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+
+                boolean success = dataBaseHelper.addOne(customerModel);
+
+                displayToast("Success");
             }
         });
 
