@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -77,19 +78,27 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_aToz:
+                Collections.sort(presidentList, President.PresidentNameAZComparator);
                 displayToast("Sort A to Z");
+                mAdapter.notifyDataSetChanged();
                 return true;
 
             case R.id.menu_zToa:
+                Collections.sort(presidentList, President.PresidentNameZAComparator);
                 displayToast("Sort Z to A");
+                mAdapter.notifyDataSetChanged();
                 return true;
 
             case R.id.menu_dateAscending:
+                Collections.sort(presidentList, President.PresidentDateAscendingComparator);
                 displayToast("Sort date ascending");
+                mAdapter.notifyDataSetChanged();
                 return true;
 
             case R.id.menu_dateDescending:
+                Collections.sort(presidentList, President.PresidentDateDescendingComparator);
                 displayToast("Sort date descending");
+                mAdapter.notifyDataSetChanged();
                 return true;
         }
         return super.onOptionsItemSelected(item);

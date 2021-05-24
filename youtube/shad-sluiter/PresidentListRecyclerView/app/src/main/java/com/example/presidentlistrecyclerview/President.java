@@ -1,5 +1,7 @@
 package com.example.presidentlistrecyclerview;
 
+import java.util.Comparator;
+
 public class President {
 
     private int id;
@@ -55,4 +57,32 @@ public class President {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
+
+    public static Comparator<President> PresidentNameAZComparator = new Comparator<President>() {
+        @Override
+        public int compare(President p1, President p2) {
+            return p1.getName().compareTo(p2.getName());
+        }
+    };
+
+    public static Comparator<President> PresidentNameZAComparator = new Comparator<President>() {
+        @Override
+        public int compare(President p1, President p2) {
+            return p2.getName().compareTo(p1.getName());
+        }
+    };
+
+    public static Comparator<President> PresidentDateAscendingComparator = new Comparator<President>() {
+        @Override
+        public int compare(President p1, President p2) {
+            return p1.getDateOfElection() - p2.getDateOfElection();
+        }
+    };
+
+    public static Comparator<President> PresidentDateDescendingComparator = new Comparator<President>() {
+        @Override
+        public int compare(President p1, President p2) {
+            return p2.getDateOfElection() - p1.getDateOfElection();
+        }
+    };
 }
