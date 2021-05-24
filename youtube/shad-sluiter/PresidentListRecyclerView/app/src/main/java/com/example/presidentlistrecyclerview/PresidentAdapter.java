@@ -1,6 +1,7 @@
 package com.example.presidentlistrecyclerview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -45,6 +47,15 @@ public class PresidentAdapter extends RecyclerView.Adapter<PresidentAdapter.Pres
         holder.tvPresName.setText(president.getName());
         holder.tvPresElectionDate.setText(String.valueOf(president.getDateOfElection()));
         Glide.with(this.context).load(president.getImageURL()).into(holder.ivPresPic);
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // send the control to the EditOneItem Activity
+                Intent intent = new Intent(context, AddEditOne.class);
+                intent.putExtra("id", presidentList.get(position).getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -61,6 +72,7 @@ public class PresidentAdapter extends RecyclerView.Adapter<PresidentAdapter.Pres
         private ImageView ivPresPic;
         private TextView tvPresName;
         private TextView tvPresElectionDate;
+        private ConstraintLayout parentLayout;
 
         public PresidentViewHolder(@NonNull @org.jetbrains.annotations.NotNull View itemView) {
             super(itemView);
@@ -68,6 +80,7 @@ public class PresidentAdapter extends RecyclerView.Adapter<PresidentAdapter.Pres
             ivPresPic = itemView.findViewById(R.id.iv_presidentPicture);
             tvPresName = itemView.findViewById(R.id.tv_presName);
             tvPresElectionDate = itemView.findViewById(R.id.tv_dateElection);
+            parentLayout = itemView.findViewById(R.id.oneLinePresidentLayout);
         }
     }
 }
