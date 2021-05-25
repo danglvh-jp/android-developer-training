@@ -1,0 +1,2 @@
+rootProject.name = "Sorting Example"
+include ':app'
