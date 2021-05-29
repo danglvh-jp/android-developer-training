@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -22,8 +23,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.uploadimagetoserver.api.ApiService;
+import com.example.uploadimagetoserver.api.Const;
+
+import java.io.File;
 import java.io.IOException;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgFromApi;
     private Button btnSelectImage;
     private Button btnUploadImage;
+    private Uri mUri;
+    private ProgressDialog mProgressDialog;
 
     private ActivityResultLauncher<Intent> mActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -51,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
                         Uri uri = data.getData();
+                        mUri = uri;
                         try {
                             Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                             imgFromGallery.setImageBitmap(bitmap);
@@ -80,12 +97,26 @@ public class MainActivity extends AppCompatActivity {
 
         initUI();
 
+        // Init progress dialog
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("Please wait ...");
+
         btnSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickRequestPermission();
             }
         });
+
+        btnUploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mUri != null) {
+                    callApiRegisterAccount();
+                }
+            }
+        });
+
     }
 
     private void onClickRequestPermission() {
@@ -121,5 +152,44 @@ public class MainActivity extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         mActivityResultLauncher.launch(Intent.createChooser(intent, "Select Image"));
+    }
+
+    private void callApiRegisterAccount() {
+        mProgressDialog.show();
+
+        String strUsername = edtUsername.getText().toString().trim();
+        String strPassword = edtPassword.getText().toString().trim();
+
+        RequestBody requestBodyUsername = RequestBody.create(MediaType.parse("multipart/form-data"), strUsername);
+        RequestBody requestBodyPassword = RequestBody.create(MediaType.parse("multipart/form-data"), strPassword);
+
+        String strRealPath = RealPathUtil.getRealPath(this, mUri);
+        Log.e("Tincoder", strRealPath);
+        File file = new File(strRealPath);
+        RequestBody requestBodyAvt = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part multipartBodyAvt = MultipartBody.Part.createFormData(Const.KEY_AVT, file.getName(), requestBodyAvt);
+
+        ApiService.apiService.registerAccount(requestBodyUsername, requestBodyPassword, multipartBodyAvt).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                mProgressDialog.dismiss();
+                User user = response.body();
+                if (user != null) {
+                    tvUsername.setText(user.getUsername());
+                    tvPassword.setText(user.getPassword());
+                    Glide.with(MainActivity.this).load(user.getAvatar()).into(imgFromApi);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                mProgressDialog.dismiss();
+                displayToast("Call api fail");
+            }
+        });
+    }
+
+    private void displayToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 }
