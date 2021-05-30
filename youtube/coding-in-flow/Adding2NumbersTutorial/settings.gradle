@@ -1,0 +1,2 @@
+rootProject.name = "Adding 2 Numbers Tutorial"
+include ':app'
