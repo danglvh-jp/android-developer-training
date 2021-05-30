@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnCompute;
     private EditText edtYourName;
     private EditText edtOtherPersonName;
+    private ImageView ivNeedle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         btnCompute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String yourName = edtYourName.getText().toString().trim();
-                String otherPersonName = edtOtherPersonName.getText().toString().trim();
+                String yourName = edtYourName.getText().toString().toLowerCase().trim();
+                String otherPersonName = edtOtherPersonName.getText().toString().toLowerCase().trim();
 
                 int totalLetters = yourName.length() + otherPersonName.length();
                 int totalMatches = 0;
@@ -46,8 +51,20 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                float compatScore = totalMatches / totalLetters;
-                displayToast("Compat Score = " + compatScore);
+                float compatScore = (float) totalMatches / totalLetters;
+
+                // loveScore between -50 and 50.
+                int loveScore = ((int) compatScore * 100) - 50;
+
+                RotateAnimation ra = new RotateAnimation(0, 360 + loveScore,
+                        Animation.RELATIVE_TO_SELF, 0.5f,
+                        Animation.RELATIVE_TO_SELF, 0.5f);
+                ra.setFillAfter(true);
+                ra.setDuration(2000);
+                ra.setInterpolator(new AccelerateDecelerateInterpolator());
+                ivNeedle.setAnimation(ra);
+
+                displayToast("Love Score of " + loveScore);
             }
         });
     }
@@ -56,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         btnCompute = findViewById(R.id.btn_compute);
         edtYourName = findViewById(R.id.edt_your_name);
         edtOtherPersonName = findViewById(R.id.edt_other_person_name);
+        ivNeedle = findViewById(R.id.iv_needle);
     }
 
     private void displayToast(String message) {

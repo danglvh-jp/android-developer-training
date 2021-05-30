@@ -71,7 +71,7 @@
         app:srcCompat="@drawable/bigmeter" />
 
     <ImageView
-        android:id="@+id/iv_neddle"
+        android:id="@+id/iv_needle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/iv_meter"
