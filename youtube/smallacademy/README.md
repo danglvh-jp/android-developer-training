@@ -1,2 +1,0 @@
-# smallacademy
-Youtube Channel: SmallAcademy
