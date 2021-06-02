@@ -1,12 +1,19 @@
 package com.example.emailauthapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Register extends AppCompatActivity {
 
@@ -16,6 +23,7 @@ public class Register extends AppCompatActivity {
     private EditText edtRegisterConfPassword;
     private Button btnRegister;
     private Button btnGoToLogin;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,9 @@ public class Register extends AppCompatActivity {
         edtRegisterConfPassword = findViewById(R.id.edt_register_conf_password);
         btnRegister = findViewById(R.id.btn_register);
         btnGoToLogin = findViewById(R.id.btn_go_to_login);
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +78,20 @@ public class Register extends AppCompatActivity {
                 // register the user using firebase
 
                 displayToast("Data Validated.");
+
+                mAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        // send user to next page
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
